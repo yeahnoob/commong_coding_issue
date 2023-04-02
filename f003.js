@@ -3,7 +3,7 @@
 // That object cannot be changed.
 // Using the replacer function in JSON.stringify() method.
 function maskKeysInObjectStringify(unmaskedObject, maskKeyNames, loggingLevel = 'INFO', maskedLength = 6) {
-    var maskedStringFromObject = JSON.stringify(unmaskedObject, function (key, value) {
+    return JSON.stringify(unmaskedObject, function (key, value) {
         if (loggingLevel !== 'TRACE') {
             if (maskKeyNames.indexOf(key) > -1) {
                 return value.substring(0, maskedLength) + '*** ***' + value.substring(value.length - maskedLength, value.length);
@@ -11,7 +11,6 @@ function maskKeysInObjectStringify(unmaskedObject, maskKeyNames, loggingLevel = 
         }
         return value;
     });
-    return maskedStringFromObject;
 }
 
 module.exports = { maskKeysInObjectStringify };
